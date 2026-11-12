@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "manim-rag"
+version = "0.1.0"
+description = "RAG-Based ManimCE Code Generator with AST chunking, Hybrid Search (ChromaDB + BM25), Llama 3 70B LangChain pipeline, and Docker sandbox retry loop."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "langchain-core>=0.3.0",
+    "langchain-openai>=0.2.0",
+    "numpy>=1.26.0",
+    "pydantic>=2.7.0",
+    "rank-bm25>=0.2.2",
+]
+
+[project.optional-dependencies]
+chromadb = ["chromadb>=0.5.0"]
+dev = ["pytest>=8.0.0"]
+
+[project.scripts]
+manim-rag = "manim_rag.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-v"
